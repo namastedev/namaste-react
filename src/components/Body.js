@@ -26,14 +26,17 @@ const Body = () => {
     );
 
     const json = await data.json();
+    const arrayOfCards = json?.data?.cards;
+    const restaurantListing = "restaurant_grid_listing";
 
-    // Optional Chaining
-    setListOfRestraunt(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurant(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    for (const cardObj of arrayOfCards) {
+      if (cardObj?.card?.card && cardObj?.card?.card?.id === restaurantListing) {
+        const resData =
+        cardObj.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        setListOfRestraunt(resData);
+        setFilteredRestaurant(resData);
+      }
+    }
   };
 
   const onlineStatus = useOnlineStatus();
