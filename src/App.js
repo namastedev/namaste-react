@@ -49,6 +49,7 @@ const AppLayout = () => {
   );
 };
 
+//creating router for our app
 const appRouter = createBrowserRouter([
   {
     path: "/",
